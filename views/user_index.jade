@@ -1,0 +1,208 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='csrf-token', content=_csrf)
+    meta(name='author', content='')
+    title #{title}
+    != css('styles')
+    != js('application')
+    script(src='js/lib/jquery.gridster.js')
+    script(src='js/lib/flowtype.js')
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/lib/gridster.css')
+    link(href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
+  body
+    #wrap
+      include partials/navigation
+      include partials/flash
+      section.demo
+        .gridster
+          ul
+            li#s1.gs-w(data-row='1', data-col='1', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-github
+                footer
+                  | TEST
+            li#s2.gs-w(data-row='1', data-col='2', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-twitter
+                footer
+                  | TEST
+            li#s3.gs-w(data-row='1', data-col='3', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-facebook
+                footer
+                  | TEST
+            li#s4.gs-w(data-row='1', data-col='4', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-instagram
+                footer
+                  | TEST
+            li#s5.gs-w(data-row='1', data-col='5', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-linkedin
+                footer
+                  | TEST
+            li#s6.gs-w(data-row='2', data-col='1', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-tumblr
+                footer
+                  | TEST
+            li#s7.gs-w(data-row='2', data-col='2', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-foursquare
+                footer
+                  | TEST
+            li#s8.gs-w(data-row='2', data-col='3', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-stack-overflow
+                footer
+                  | TEST
+            li#s9.gs-w(data-row='2', data-col='4', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-skype
+                footer
+                  | TEST
+            li#s10.gs-w(data-row='2', data-col='5', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-flickr
+                footer
+                  | TEST
+            li#s11.gs-w(data-row='3', data-col='1', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-dropbox
+                footer
+                  | TEST
+            li#s12.gs-w(data-row='3', data-col='2', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-vimeo-square
+                footer
+                  | TEST
+            li#s13.gs-w(data-row='3', data-col='3', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-google-plus
+                footer
+                  | TEST
+            li#s14.gs-w(data-row='3', data-col='4', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-pinterest
+                footer
+                  | TEST
+            li#s15.gs-w(data-row='3', data-col='5', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-dribbble
+                footer
+                  | TEST
+            li#s16.gs-w(data-row='4', data-col='1', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-youtube
+                footer
+                  | TEST
+            li#s17.gs-w(data-row='4', data-col='2', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-bitbucket
+                footer
+                  | TEST
+            li#s18.gs-w(data-row='4', data-col='3', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-renren
+                footer
+                  | TEST
+            li#s19.gs-w(data-row='4', data-col='4', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-weibo
+                footer
+                  | TEST
+            li#s20.gs-w(data-row='4', data-col='5', data-sizex='1', data-sizey='1')
+              .rel
+                span.test
+                  a(href='#')
+                    i.fa.fa-bitcoin
+                footer
+                  | TEST
+      script(type='text/javascript').
+        $('body').css('padding-top', '46px')
+        $(function(){
+          var header_height = 46;
+          var window_width = $(window).width();
+          var window_height = $(window).height();
+          var widget_width = window_width / 5;
+          var widget_height = (window_height - header_height) / 4;
+          gridster = $(".gridster > ul").gridster({
+            widget_margins: [0, 0],
+            widget_base_dimensions: [widget_width, widget_height],
+          }).data('gridster');//.disable().disable_resize();
+        });
+        $('#s1').css('background', '#1abc9c');
+        $('#s2').css('background', '#2ecc71');
+        $('#s3').css('background', '#3498db');
+        $('#s4').css('background', '#9b59b6');
+        $('#s5').css('background', '#34495e');
+        $('#s6').css('background', '#16a085');
+        $('#s7').css('background', '#27ae60');
+        $('#s8').css('background', '#2980b9');
+        $('#s9').css('background', '#8e44ad');
+        $('#s10').css('background', '#2c3e50');
+        $('#s11').css('background', '#f1c40f');
+        $('#s12').css('background', '#e67e22');
+        $('#s13').css('background', '#e74c3c');
+        $('#s14').css('background', '#ecf0f1');
+        $('#s15').css('background', '#95a5a6');
+        $('#s16').css('background', '#f39c12');
+        $('#s17').css('background', '#d35400');
+        $('#s18').css('background', '#c0392b');
+        $('#s19').css('background', '#bdc3c7');
+        $('#s20').css('background', '#7f8c8d');
+    include partials/footer
+    script.
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

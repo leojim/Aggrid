@@ -12,8 +12,12 @@ var secrets = require('../config/secrets');
  */
 
 exports.getIndex = function(req, res) {
-  res.render('index', {
-    title: 'Aggrid'
-  });
+  if (!req.user) {
+    res.render('index', {
+      title: 'Aggrid'
+    });
+  } else {
+    console.log('haha');
+  }
 };
 
