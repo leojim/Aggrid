@@ -27,13 +27,15 @@ html
             - var count = grids.length
             - if (grids.length)
               each grid, i in grids
-                li.gs-w(id='s'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1')
+                li.gs-w(id='s'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1', name=grid.name)
                   //- .rel(id='ss'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1')
                   span.test
                     //- a.getin(id='ss'+(i+1), data-toggle='modal', data-target='#myModal', href='#')
-                    i.fa.fa-github.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
+                    //-i.fa.fa-github.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
+
+                    i.fa(class='fa-'+grid.name.toLowerCase(), id='ss'+i, href='#')
                   footer
-                    | TEST
+                    p #{grid.name}
             - for (var i = grids.length + 1; i <= 5 * 4; i++) {
                 li.gs-w(id='s'+i, data-row=''+(Math.floor((i - 1) / 5) + 1), data-col=''+((i - 1) % 5 + 1), data-sizex='1', data-sizey='1')
                   //- .rel(id='ss'+i)
@@ -41,7 +43,7 @@ html
                     //- a.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
                     i.fa.fa-plus.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
                   footer
-                    | TEST
+                    | ADD
             - }
             //- - var count = 0
             //- - var grids = #{items}
@@ -210,7 +212,7 @@ html
                       select#grid_item.form-control(multiple='multiple')
                         option(value='0') GitHub
                         option(value='1') Twitter
-                        option(value='2') FaceBook
+                        option(value='2') Facebook
                         option(value='3') Instagram
                         option(value='4') LinkedIn
                         option(value='5') Tumblr
@@ -218,6 +220,16 @@ html
                         option(value='7') Stack-Overflow
                         option(value='8') Skype
                         option(value='9') Flickr
+                        option(value='10') Youtube
+                        option(value='11') Weibo
+                        option(value='12') Renren
+                        option(value='13') Skype
+                        option(value='14') Pinterest
+                        option(value='15') Dropbox
+                        option(value='16') Bitcoin
+                        option(value='17') Google-Plus
+                        option(value='18') Bitbucket
+                        option(value='19') Dribbble
                   p
                   .row
                     label.control-label.col-sm-3(for='username') Username
@@ -266,9 +278,11 @@ html
         $('#s20').css('background', '#7f8c8d');
 
         $('.getin').click(function(event){
-            var item_id =event.target.id;
+            //- var checker = $('#'+event.target.id).parent().parent().attr('name');
+            
+            var item_id = event.target.id;
             item_id = event.target.id.substring(2, event.target.id.length + 1);
-            alert(item_id);
+            //alert(item_id);
             var item_row = Math.floor((item_id - 1) / 5)  + 1;
             var item_col = (item_id - 1) % 5 + 1;
             $("#btn_save").unbind('click');
@@ -277,10 +291,32 @@ html
                 var choice = e.options[e.selectedIndex].text;
                 var user = $("#username").val();
 
-                var out = ''.concat(" row: ").concat(item_row).concat(" col: ").concat(item_col).concat(" selected: ").concat(choice).concat(" username: ").concat(user);
-
-                alert(out);
+                //var out = ''.concat(" row: ").concat(item_row).concat(" col: ").concat(item_col).concat(" selected: ").concat(choice).concat(" username: ").concat(user);
+                //alert(out);
+                //- $.post( "/savegrid", {
+                //-     name: choice,
+                //-     user_name: user,
+                //-     row: item_row,
+                //-     col: item_col
+                //-   }, function( data ) {
+                //-   alert( "Data Loaded: " + data );
+                //- });
+                $.ajax({
+                  type: "POST",
+                  url: "/savegrid",
+                  data: {
+                    name: choice,
+                    user_name: user,
+                    row: item_row,
+                    col: item_col
+                  }
+                }).done(function(msg) {
+                    alert("Data Saved: " + msg);
+                });
                 $('#myModal').modal('hide');
+                $(function() {
+                  location.href ="/";
+                });
             });
         });
 

@@ -20,6 +20,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var indexController = require('./controllers/index');
+var gridController = require('./controllers/grid');
 
 /**
  * API keys + Passport configuration.
@@ -69,12 +70,12 @@ app.use(express.session({
     auto_reconnect: true
   })
 }));
-app.use(express.csrf());
+//app.use(express.csrf());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.user = req.user;
-  res.locals._csrf = req.csrfToken();
+  //res.locals._csrf = req.csrfToken();
   res.locals.secrets = secrets;
   next();
 });
@@ -84,7 +85,7 @@ app.use(function(req, res, next) {
   // Keep track of previous URL
   if (req.method !== 'GET') return next();
   var path = req.path.split('/')[1];
-  if (/(auth|login|logout|signup)$/i.test(path)) return next();
+  if (/(auth|login|logout|signup|savegrid)$/i.test(path)) return next();
   req.session.returnTo = req.path;
   next();
 });
@@ -140,6 +141,8 @@ app.post('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, 
 app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getLinkedin);
 
 app.get('/index', indexController.getIndex);
+app.get('/savegrid', gridController.createGrid);
+app.post('/savegrid', gridController.createGrid);
 /**
  * OAuth routes for sign-in.
  */

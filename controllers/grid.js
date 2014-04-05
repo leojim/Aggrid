@@ -20,13 +20,13 @@ exports.createGrid = function(req, res, next) {
   var grid = new Grid({
     user_id: req.user._id,
     name: req.body.name,
-    user_name, req.body.user_name,
+    user_name: req.body.user_name,
     row: req.body.row,
     col: req.body.col,
   });
 
-  var gridModel = new GridModel();
-  gridModel.createGrid(userId, name, userName, function(err, doc) {
+  var gridModel = new Grid();
+  gridModel.createGrid(req.user._id, req.body.name, req.body.user_name, req.body.row, req.body.col, function(err, doc) {
     if (err) {
       if (err.code === 11100) {
         req.flash('errors', { msg: 'Grid already exists.' });
@@ -50,7 +50,7 @@ exports.updateGrid = function(req, res, next) {
   var grid = new Grid({
     user_id: req.user._id,
     name: req.body.name,
-    user_name, req.body.user_name,
+    user_name: req.body.user_name,
     row: req.body.row,
     col: req.body.col,
   });
