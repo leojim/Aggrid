@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
+var Grid = require('../models/Grid');
 var secrets = require('../config/secrets');
 
 /**
@@ -17,7 +18,20 @@ exports.getIndex = function(req, res) {
       title: 'Aggrid'
     });
   } else {
-    console.log('haha');
+    var gridModel = new Grid();
+    gridModel.getGrids(req.user._id, function(err, docs) {
+      if (err) {
+        req.flash('Error when get grids', err);
+         console.log('haha');
+        return;
+        //return res.redirect('/');
+      }
+      console.log(docs);
+      res.render('user_index', {
+        title: 'Aggrid',
+        grids: docs
+      });
+    });
   }
 };
 

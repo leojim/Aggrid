@@ -22,146 +22,214 @@ html
       section.demo
         .gridster
           ul
-            li#s1.gs-w(data-row='1', data-col='1', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-github
-                footer
-                  | TEST
-            li#s2.gs-w(data-row='1', data-col='2', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-twitter
-                footer
-                  | TEST
-            li#s3.gs-w(data-row='1', data-col='3', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-facebook
-                footer
-                  | TEST
-            li#s4.gs-w(data-row='1', data-col='4', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-instagram
-                footer
-                  | TEST
-            li#s5.gs-w(data-row='1', data-col='5', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-linkedin
-                footer
-                  | TEST
-            li#s6.gs-w(data-row='2', data-col='1', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-tumblr
-                footer
-                  | TEST
-            li#s7.gs-w(data-row='2', data-col='2', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-foursquare
-                footer
-                  | TEST
-            li#s8.gs-w(data-row='2', data-col='3', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-stack-overflow
-                footer
-                  | TEST
-            li#s9.gs-w(data-row='2', data-col='4', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-skype
-                footer
-                  | TEST
-            li#s10.gs-w(data-row='2', data-col='5', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-flickr
-                footer
-                  | TEST
-            li#s11.gs-w(data-row='3', data-col='1', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-dropbox
-                footer
-                  | TEST
-            li#s12.gs-w(data-row='3', data-col='2', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-vimeo-square
-                footer
-                  | TEST
-            li#s13.gs-w(data-row='3', data-col='3', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-google-plus
-                footer
-                  | TEST
-            li#s14.gs-w(data-row='3', data-col='4', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-pinterest
-                footer
-                  | TEST
-            li#s15.gs-w(data-row='3', data-col='5', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-dribbble
-                footer
-                  | TEST
-            li#s16.gs-w(data-row='4', data-col='1', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-youtube
-                footer
-                  | TEST
-            li#s17.gs-w(data-row='4', data-col='2', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-bitbucket
-                footer
-                  | TEST
-            li#s18.gs-w(data-row='4', data-col='3', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-renren
-                footer
-                  | TEST
-            li#s19.gs-w(data-row='4', data-col='4', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-weibo
-                footer
-                  | TEST
-            li#s20.gs-w(data-row='4', data-col='5', data-sizex='1', data-sizey='1')
-              .rel
-                span.test
-                  a(href='#')
-                    i.fa.fa-bitcoin
-                footer
-                  | TEST
+            //- ul.getin(data-toggle='modal', data-target='#myModal')
+            //- script.
+            - var count = grids.length
+            - if (grids.length)
+              each grid, i in grids
+                li.gs-w(id='s'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1')
+                  //- .rel(id='ss'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1')
+                  span.test
+                    //- a.getin(id='ss'+(i+1), data-toggle='modal', data-target='#myModal', href='#')
+                    i.fa.fa-github.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
+                  footer
+                    | TEST
+            - for (var i = grids.length + 1; i <= 5 * 4; i++) {
+                li.gs-w(id='s'+i, data-row=''+(Math.floor((i - 1) / 5) + 1), data-col=''+((i - 1) % 5 + 1), data-sizex='1', data-sizey='1')
+                  //- .rel(id='ss'+i)
+                  span.test
+                    //- a.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
+                    i.fa.fa-plus.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
+                  footer
+                    | TEST
+            - }
+            //- - var count = 0
+            //- - var grids = #{items}
+            //- - grids.forEach(function(grid) {
+            //- -   count = count + 1
+            //-     li.gs-w(id='s'+count, data-row=''+(count / 5 + 1), data-col=''+(count % 5 + 1), data-sizex='1', data-sizey='1')
+            //-       .rel
+            //-         span.test
+            //-           a(href='#')
+            //-             i.fa.fa-github
+            //-         footer
+            //-           | TEST
+            //- - });
+            //- li#s1.gs-w(data-row='1', data-col='1', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-github
+            //-     footer
+            //-       | TEST
+            //- li#s2.gs-w(data-row='1', data-col='2', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-twitter
+            //-     footer
+            //-       | TEST
+            //- li#s3.gs-w(data-row='1', data-col='3', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-facebook
+            //-     footer
+            //-       | TEST
+            //- li#s4.gs-w(data-row='1', data-col='4', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-instagram
+            //-     footer
+            //-       | TEST
+            //- li#s5.gs-w(data-row='1', data-col='5', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-linkedin
+            //-     footer
+            //-       | TEST
+            //- li#s6.gs-w(data-row='2', data-col='1', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-tumblr
+            //-     footer
+            //-       | TEST
+            //- li#s7.gs-w(data-row='2', data-col='2', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-foursquare
+            //-     footer
+            //-       | TEST
+            //- li#s8.gs-w(data-row='2', data-col='3', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-stack-overflow
+            //-     footer
+            //-       | TEST
+            //- li#s9.gs-w(data-row='2', data-col='4', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-skype
+            //-     footer
+            //-       | TEST
+            //- li#s10.gs-w(data-row='2', data-col='5', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-flickr
+            //-     footer
+            //-       | TEST
+            //- li#s11.gs-w(data-row='3', data-col='1', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-dropbox
+            //-     footer
+            //-       | TEST
+            //- li#s12.gs-w(data-row='3', data-col='2', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-vimeo-square
+            //-     footer
+            //-       | TEST
+            //- li#s13.gs-w(data-row='3', data-col='3', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-google-plus
+            //-     footer
+            //-       | TEST
+            //- li#s14.gs-w(data-row='3', data-col='4', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-pinterest
+            //-     footer
+            //-       | TEST
+            //- li#s15.gs-w(data-row='3', data-col='5', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-dribbble
+            //-     footer
+            //-       | TEST
+            //- li#s16.gs-w(data-row='4', data-col='1', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-youtube
+            //-     footer
+            //-       | TEST
+            //- li#s17.gs-w(data-row='4', data-col='2', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-bitbucket
+            //-     footer
+            //-       | TEST
+            //- li#s18.gs-w(data-row='4', data-col='3', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-renren
+            //-     footer
+            //-       | TEST
+            //- li#s19.gs-w(data-row='4', data-col='4', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-weibo
+            //-     footer
+            //-       | TEST
+            //- li#s20.gs-w(data-row='4', data-col='5', data-sizex='1', data-sizey='1')
+            //-   .rel
+            //-     span.test
+            //-       a(href='#')
+            //-         i.fa.fa-bitcoin
+            //-     footer
+            //-       | TEST
+      #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#myModalLabel.modal-title Set Your Grid
+              .modal-body
+                .choose-grid
+                  .row
+                      .col-sm-3
+                        label(for='username')  Choose Icon
+                      .col-sm-9
+                        select#grid_item.form-control(multiple='multiple')
+                          option(value='0') GitHub
+                          option(value='1') Twitter
+                          option(value='2') FaceBook
+                          option(value='3') Instagram
+                          option(value='4') LinkedIn
+                          option(value='5') Tumblr
+                          option(value='6') Foursquare
+                          option(value='7') Stack-Overflow
+                          option(value='8') Skype
+                          option(value='9') Flickr
+                    .row
+                      label.control-label.col-sm-3(for='username') Username
+                      .col-sm-6
+                        input#username.form-control(type='text')
+                      .col-sm-3
+                        button#connect.btn.btn-primary.btn-lg(type='button') Connect
+                    <br />
+
+              .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                button.btn.btn-primary#btn_save(type='button') Save
+
       script(type='text/javascript').
         $('body').css('padding-top', '46px')
         $(function(){
@@ -195,6 +263,29 @@ html
         $('#s18').css('background', '#c0392b');
         $('#s19').css('background', '#bdc3c7');
         $('#s20').css('background', '#7f8c8d');
+
+        $('.getin').click(function(event){
+            var item_id =event.target.id;
+            alert(event.target.tagName);
+            var id = "#".concat(item_id);
+            var item_col = $(id).attr("data-col");
+            var item_row = $(id).attr("data-row");
+            //item_id = item_id.substring(1, item_id.length + 1);
+
+            //var item_col = Math.floor((item_id - 1) / 5)  + 1;
+            //var item_row = (item_id - 1) % 5 + 1;
+            $("#btn_save").click(function(){
+                var e = document.getElementById('grid_item');
+                var choice = e.options[e.selectedIndex].text;
+                var user = $("#username").val();
+
+                //var out = ''.concat(" col: ").concat(item_col).concat(" row: ").concat(item_row).concat(" selected: ").concat(choice).concat(" username: ").concat(user);
+
+                alert(123);
+            });
+        });
+
+        
     include partials/footer
     script.
       var _gaq = _gaq || [];
