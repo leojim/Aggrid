@@ -7,6 +7,7 @@ var User = require('../models/User');
 var Grid = require('../models/Grid');
 var secrets = require('../config/secrets');
 var graph = require('fbgraph');
+var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
 
 /**
  * GET /index
@@ -30,34 +31,65 @@ exports.getIndex = function(req, res) {
       console.log(docs);
 
       //facebook
-      var token = _.findWhere(req.user.tokens, { kind: 'facebook' });
-	  graph.setAccessToken(token.accessToken);
+      
 	  var resInfo_FB = {};
+	  var resInfo_LI = {};
+
+	  //Linkedin
+	  
 
 	  async.parallel({
-	    getMe: function(done) {
+	    facebook1: function(done) {
+	      var token = _.findWhere(req.user.tokens, { kind: 'facebook' });
+	      if (token == null) {
+	      	done(err, null);
+	      	return;
+	      }
+	      graph.setAccessToken(token.accessToken);
 	      graph.get(req.user.facebook, function(err, me) {
 	      	resInfo_FB.me = me;
 	        done(err, me);
 	      });
 	    },
-	    getMyFriends: function(done) {
+	    facebook2: function(done) {
+	      var token = _.findWhere(req.user.tokens, { kind: 'facebook' });
+	      if (token == null) {
+	      	done(err, null);
+	      	return;
+	      }
+	      graph.setAccessToken(token.accessToken);
 	      graph.get(req.user.facebook + '/friends', function(err, friends) {
 	      	resInfo_FB.b = friends.data;
 	        done(err, friends.data);
 	      });
+	    },
+	    linkedin1 : function(done) {
+	    	var token = _.findWhere(req.user.tokens, { kind: 'linkedin' });
+	    	if (token == null) {
+	      	  done(err, null);
+	      	  return;
+	        }
+	        var linkedin = Linkedin.init(token.accessToken);
+	    	linkedin.people.me(function(err, $in) {
+		      if (err) return next(err);
+		      resInfo_LI = $in;
+		      console.log(resInfo_LI);
+		      done(err, $in);
+		    });
 	    }
 	  },
-	  function(err, results) {
-	    if (err) return next(err);
-	    res.render('user_index', {
+      function(err, results) {
+        if (err) return next(err);
+        res.render('user_index', {
           title: 'Aggrid',
           grids: docs,
           //me: results.getMe,
           //friends: results.getMyFriends
-          resInfo_FB: resInfo_FB
-      	});
-	  });
+          resInfo_FB: resInfo_FB,
+          resInfo_LI: resInfo_LI
+  	    });
+      });
+
       
     });
   }
