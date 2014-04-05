@@ -76,7 +76,8 @@ html
                     else if (grid.name == 'Weibo')
                       a(href='https://weibo.com/' + grid.user_name)
                         i.fa(class='fa-'+grid.name.toLowerCase(), id='ss'+i, href='#')
-                    //- i.fa(class='fa-'+grid.name.toLowerCase(), id='ss'+i, href='#')
+                    else
+                      i.fa(class='fa-'+grid.name.toLowerCase(), id='ss'+i, href='#')
                   footer
                     if (grid.name == 'GitHub')
                       i.fa.fa-github-alt.fafooter.pull-right
