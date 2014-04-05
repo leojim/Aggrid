@@ -37,11 +37,8 @@ var app = express();
 /**
  * Mongoose configuration.
  */
-
-mongoose.connect(secrets.db);
-mongoose.connection.on('error', function() {
-  console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
-});
+var BaseModel = require("./models/base");
+BaseModel.connect();
 
 /**
  * Express configuration.

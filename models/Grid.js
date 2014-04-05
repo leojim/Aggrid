@@ -1,9 +1,18 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
+var Base = require("./base");
+var ObjectId = Base.Schema.ObjectId;
+var Mixed = Base.Schema.Types.Mixed;
+var async = require("async");
+var util = require("util");
 
+/**
+ * Grid schema
+ * @type {exports.Schema}
+ */
 var gridSchema = new mongoose.Schema({
-  user_id: Number,
+  user_id: ObjectId,
   name: String,
   //email: { type: String, unique: true, lowercase: true },
   logo_name: String,
@@ -18,57 +27,58 @@ var gridSchema = new mongoose.Schema({
   row: Number,
   col: Number,
   size_x: { type: Number, default: 1 },
-  size_y: { type: Number, default: 1 },
+  size_y: { type: Number, default: 1 }
 });
+mongoose.model('Grid', gridSchema);
 
 /**
- * Hash the password for security.
- * "Pre" is a Mongoose middleware that executes before each user.save() call.
+ * Grid model.
+ * @constructor
  */
+var GridModel = function() {
+    Base.Model.call(this);
+    this.model = Base.Mongoose.model("Grid", "Grid");
+};
 
-gridSchema.pre('save', function(next) {
-  var grid = this;
+// Inherit GridModel from BaseModel
+util.inherits(GridModel, Base.Model);
 
-  if (!user.isModified('password')) return next();
+/**
+ * create a new grid.
+ *
+ *     // usage: var gridModel = new GridModel();
+ *     //        gridModel.createGrid(userId, name, userName, function(err, doc) {
+ *     //            //...
+ *     //        });
+ *
+ * @param userId
+ * @param name
+ * @param userName
+ * @param callback
+ */
+GridModel.prototype.createGrid = function(userId, name, userName, callback) {
+    var data = {
+        user_id     : userId,
+        name        : name,
+        user_name   : userName
+    };
 
-  bcrypt.genSalt(5, function(err, salt) {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
+    var self = this;
+    async.waterfall([
+        function(callback) {
+            self.model.create(data, function(err, doc) {
+                if(err) {
+                    callback(err);
+                } else if(doc === undefined || doc === null || doc.length === 0) {
+                    callback(new Error("Can't create document."));
+                } else {
+                    callback(null, doc.toJSON());
+                }
+            });
+        }
+    ], function(err, doc) {
+        callback(err, doc);
     });
-  });
-});
-
-/**
- * Validate user's password.
- * Used by Passport-Local Strategy for password validation.
- */
-
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
 };
 
-/**
- * Get URL to a user's gravatar.
- * Used in Navbar and Account Management page.
- */
-
-userSchema.methods.gravatar = function(size, defaults) {
-  if (!size) size = 200;
-  if (!defaults) defaults = 'retro';
-
-  if (!this.email) {
-    return 'https://gravatar.com/avatar/?s=' + size + '&d=' + defaults;
-  }
-
-  var md5 = crypto.createHash('md5').update(this.email);
-  return 'https://gravatar.com/avatar/' + md5.digest('hex').toString() + '?s=' + size + '&d=' + defaults;
-};
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = GridModel;
