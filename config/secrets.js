@@ -1,5 +1,8 @@
 module.exports = {
-  db: process.env.MONGODB|| 'mongodb://localhost:27017/test',
+  //db: process.env.MONGODB|| 'mongodb://localhost:27017/test',
+  db: process.env.MONGODB|| 'mongodb://Aggrid:90c85a1a11f21bcdee26d3be8d1fd1fd@oceanic.mongohq.com:10088/Aggrid',
+
+
 
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 

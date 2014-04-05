@@ -29,6 +29,7 @@ html
                     i.fa.fa-github
                 footer
                   | GitHub
+                  i.fa.fa-github-alt.fafooter.pull-right
             li#s2.gs-w(data-row='1', data-col='2', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -36,6 +37,7 @@ html
                     i.fa.fa-twitter
                 footer
                   | Twitter
+                  i.fa.fa-comments.fafooter.pull-right
             li#s3.gs-w(data-row='1', data-col='3', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -43,6 +45,7 @@ html
                     i.fa.fa-facebook
                 footer
                   | Facebook
+                  i.fa.fa-users.fafooter.pull-right
             li#s4.gs-w(data-row='1', data-col='4', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -57,6 +60,7 @@ html
                     i.fa.fa-linkedin
                 footer
                   | Linkedin
+                  i.fa.fa-envelope.fafooter.pull-right
             li#s6.gs-w(data-row='2', data-col='1', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -85,6 +89,7 @@ html
                     i.fa.fa-skype
                 footer
                   | Skype
+                  i.fa.fa-envelope.fafooter.pull-right
             li#s10.gs-w(data-row='2', data-col='5', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -99,6 +104,7 @@ html
                     i.fa.fa-dropbox
                 footer
                   | Dropbox
+                  i.fa.fa-check-square.fafooter.pull-right
             li#s12.gs-w(data-row='3', data-col='2', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -113,6 +119,7 @@ html
                     i.fa.fa-google-plus
                 footer
                   | Google-Plus
+                  i.fa.fa-users.fafooter.pull-right
             li#s14.gs-w(data-row='3', data-col='4', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -120,6 +127,7 @@ html
                     i.fa.fa-pinterest
                 footer
                   | Pinterest
+                  i.fa.fa-dot-circle-o.fafooter.pull-right
             li#s15.gs-w(data-row='3', data-col='5', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -155,6 +163,7 @@ html
                     i.fa.fa-weibo
                 footer
                   | Weibo
+                  i.fa.fa-comment.fafooter.pull-right
             li#s20.gs-w(data-row='4', data-col='5', data-sizex='1', data-sizey='1')
               .rel
                 span.test
@@ -195,6 +204,7 @@ html
         $('#s18').css('background', '#c0392b');
         $('#s19').css('background', '#bdc3c7');
         $('#s20').css('background', '#7f8c8d');
+
     include partials/footer
     script.
       var _gaq = _gaq || [];
@@ -206,3 +216,68 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+    script.
+      $("#theme1").click(function(){
+        $('#s1').css('background', '#1abc9c');
+        $('#s2').css('background', '#2ecc71');
+        $('#s3').css('background', '#3498db');
+        $('#s4').css('background', '#9b59b6');
+        $('#s5').css('background', '#34495e');
+        $('#s6').css('background', '#16a085');
+        $('#s7').css('background', '#27ae60');
+        $('#s8').css('background', '#2980b9');
+        $('#s9').css('background', '#8e44ad');
+        $('#s10').css('background', '#2c3e50');
+        $('#s11').css('background', '#f1c40f');
+        $('#s12').css('background', '#e67e22');
+        $('#s13').css('background', '#e74c3c');
+        $('#s14').css('background', '#ecf0f1');
+        $('#s15').css('background', '#95a5a6');
+        $('#s16').css('background', '#f39c12');
+        $('#s17').css('background', '#d35400');
+        $('#s18').css('background', '#c0392b');
+        $('#s19').css('background', '#bdc3c7');
+        $('#s20').css('background', '#7f8c8d');});
+      $("#theme2").click(function(){
+        $('#s1').css('background', '#000000');
+        $('#s2').css('background', '#404040');
+        $('#s3').css('background', '#606060');
+        $('#s4').css('background', '#808080');
+        $('#s5').css('background', '#c0c0c0');
+        $('#s6').css('background', '#d0d0d0');
+        $('#s7').css('background', '#e0e0e0');
+        $('#s8').css('background', '#ffffff');
+        $('#s9').css('background', '#ff0000');
+        $('#s10').css('background', '#ff9900');
+        $('#s11').css('background', '#ff0099');
+        $('#s12').css('background', '#33ff00');
+        $('#s13').css('background', '#00ffff');
+        $('#s14').css('background', '#0066ff');
+        $('#s15').css('background', '#cc00ff');
+        $('#s16').css('background', '#3300ff');
+        $('#s17').css('background', '#7700ff');
+        $('#s18').css('background', '#ff00ff');
+        $('#s19').css('background', '#ffccff');
+        $('#s20').css('background', '#33ffff');});
+      $("#theme3").click(function(){
+        $('#s1').css('background', '#67321A');
+        $('#s2').css('background', '#FF823F');
+        $('#s3').css('background', '#FF883F');
+        $('#s4').css('background', '#FF8E3F');
+        $('#s5').css('background', '#FF943F');
+        $('#s6').css('background', '#FF9A3F');
+        $('#s7').css('background', '#FF9F3F');
+        $('#s8').css('background', '#FFA53F');
+        $('#s9').css('background', '#FFAB3F');
+        $('#s10').css('background', '#FFB13F');
+        $('#s11').css('background', '#FFB53F');
+        $('#s12').css('background', '#FFB93F');
+        $('#s13').css('background', '#FFBD3F');
+        $('#s14').css('background', '#FFC23F');
+        $('#s15').css('background', '#FFC63F');
+        $('#s16').css('background', '#FFCA3F');
+        $('#s17').css('background', '#FFCE3F');
+        $('#s18').css('background', '#FFD33F');
+        $('#s19').css('background', '#FFD73F');
+        $('#s20').css('background', '#A38C28');});
