@@ -36,9 +36,15 @@ html
                   else if (grid.name == "LinkedIn")
                     div
                       | Connections: #{resInfo_LI.numConnections}
-                  else
+                  else if (grid.name == "GitHub")
                     div
-                      | haha123
+                      | Repos: 11, Stars: 203
+                  else if (grid.name == "Pinterest")
+                    div
+                      | Pins: 305
+                  else if (grid.name == "Twitter")
+                    div
+                      | Tweets: 528
 
                   span.test
                     //- a.getin(id='ss'+(i+1), data-toggle='modal', data-target='#myModal', href='#')

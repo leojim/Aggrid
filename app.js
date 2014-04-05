@@ -70,12 +70,12 @@ app.use(express.session({
     auto_reconnect: true
   })
 }));
-//app.use(express.csrf());
+app.use(express.csrf());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.user = req.user;
-  //res.locals._csrf = req.csrfToken();
+  res.locals._csrf = req.csrfToken();
   res.locals.secrets = secrets;
   next();
 });
