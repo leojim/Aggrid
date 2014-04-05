@@ -30,7 +30,7 @@ html
                 li.gs-w(id='s'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1', name=grid.name)
                   //- .rel(id='ss'+(i+1), data-row=''+(Math.floor(i / 5) + 1), data-col=''+(i % 5 + 1), data-sizex='1', data-sizey='1')
                   - var flag = true
-                  if (grid.name == "Facebook")
+                  if (grid.name == "Facebook" && resInfo_FB.b)
                     div
                       | Friends: #{resInfo_FB.b.length}
                   else if (grid.name == "LinkedIn")
@@ -52,6 +52,24 @@ html
 
                     i.fa(class='fa-'+grid.name.toLowerCase(), id='ss'+i, href='#')
                   footer
+                    if (grid.name == 'GitHub')
+                      i.fa.fa-github-alt.fafooter.pull-right
+                    else if (grid.name == 'Twitter')
+                      i.fa.fa-comments.fafooter.pull-right
+                    else if (grid.name == 'Facebook')
+                      i.fa.fa-users.fafooter.pull-right
+                    else if (grid.name == 'LinkedIn')
+                      i.fa.fa-envelope.fafooter.pull-right
+                    else if (grid.name == 'Skype')
+                      i.fa.fa-envelope.fafooter.pull-right
+                    else if (grid.name == 'Dropbox')
+                      i.fa.fa-check-square.fafooter.pull-right
+                    else if (grid.name == 'Google-Plus')
+                      i.fa.fa-users.fafooter.pull-right
+                    else if (grid.name == 'Pinterest')
+                      i.fa.fa-dot-circle-o.fafooter.pull-right
+                    else if (grid.name == 'Weibo')
+                      i.fa.fa-comment.fafooter.pull-right
                     p #{grid.name}
             - for (var i = grids.length + 1; i <= 5 * 4; i++) {
                 li.gs-w(id='s'+i, data-row=''+(Math.floor((i - 1) / 5) + 1), data-col=''+((i - 1) % 5 + 1), data-sizex='1', data-sizey='1')
