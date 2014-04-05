@@ -37,6 +37,13 @@ html
             - for (var i = grids.length + 1; i <= 5 * 4; i++) {
                 li.gs-w(id='s'+i, data-row=''+(Math.floor((i - 1) / 5) + 1), data-col=''+((i - 1) % 5 + 1), data-sizex='1', data-sizey='1')
                   //- .rel(id='ss'+i)
+                  - var flag = true
+                  if (flag)
+                    div
+                      | Friends: #{resInfo_FB.b.length}
+                  else
+                    div
+                      | haha123
                   span.test
                     //- a.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
                     i.fa.fa-plus.getin(id='ss'+i, data-toggle='modal', data-target='#myModal', href='#')
