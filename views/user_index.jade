@@ -204,27 +204,28 @@ html
               .modal-body
                 .choose-grid
                   .row
-                      .col-sm-3
-                        label(for='username')  Choose Icon
-                      .col-sm-9
-                        select#grid_item.form-control(multiple='multiple')
-                          option(value='0') GitHub
-                          option(value='1') Twitter
-                          option(value='2') FaceBook
-                          option(value='3') Instagram
-                          option(value='4') LinkedIn
-                          option(value='5') Tumblr
-                          option(value='6') Foursquare
-                          option(value='7') Stack-Overflow
-                          option(value='8') Skype
-                          option(value='9') Flickr
-                    .row
-                      label.control-label.col-sm-3(for='username') Username
-                      .col-sm-6
-                        input#username.form-control(type='text')
-                      .col-sm-3
-                        button#connect.btn.btn-primary.btn-lg(type='button') Connect
-                    <br />
+                    .col-sm-3
+                      label(for='username')  Choose Icon
+                    .col-sm-9
+                      select#grid_item.form-control(multiple='multiple')
+                        option(value='0') GitHub
+                        option(value='1') Twitter
+                        option(value='2') FaceBook
+                        option(value='3') Instagram
+                        option(value='4') LinkedIn
+                        option(value='5') Tumblr
+                        option(value='6') Foursquare
+                        option(value='7') Stack-Overflow
+                        option(value='8') Skype
+                        option(value='9') Flickr
+                  p
+                  .row
+                    label.control-label.col-sm-3(for='username') Username
+                    .col-sm-6
+                      input#username.form-control(type='text')
+                    .col-sm-3
+                      button#connect.btn.btn-primary.btn-lg(type='button') Connect
+                  p
 
               .modal-footer
                 button.btn.btn-default(type='button', data-dismiss='modal') Cancel
@@ -266,22 +267,20 @@ html
 
         $('.getin').click(function(event){
             var item_id =event.target.id;
-            alert(event.target.tagName);
-            var id = "#".concat(item_id);
-            var item_col = $(id).attr("data-col");
-            var item_row = $(id).attr("data-row");
-            //item_id = item_id.substring(1, item_id.length + 1);
-
-            //var item_col = Math.floor((item_id - 1) / 5)  + 1;
-            //var item_row = (item_id - 1) % 5 + 1;
+            item_id = event.target.id.substring(2, event.target.id.length + 1);
+            alert(item_id);
+            var item_row = Math.floor((item_id - 1) / 5)  + 1;
+            var item_col = (item_id - 1) % 5 + 1;
+            $("#btn_save").unbind('click');
             $("#btn_save").click(function(){
                 var e = document.getElementById('grid_item');
                 var choice = e.options[e.selectedIndex].text;
                 var user = $("#username").val();
 
-                //var out = ''.concat(" col: ").concat(item_col).concat(" row: ").concat(item_row).concat(" selected: ").concat(choice).concat(" username: ").concat(user);
+                var out = ''.concat(" row: ").concat(item_row).concat(" col: ").concat(item_col).concat(" selected: ").concat(choice).concat(" username: ").concat(user);
 
-                alert(123);
+                alert(out);
+                $('#myModal').modal('hide');
             });
         });
 
